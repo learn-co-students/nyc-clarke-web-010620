@@ -1,5 +1,5 @@
 class Galaxy
-  attr_accessor :size, :arms, :colors
+  attr_accessor :size, :arms, :colors #, :planets
   attr_reader :name
 
   @@all = []
@@ -9,8 +9,28 @@ class Galaxy
     @size = size
     @arms = arms
     @colors = colors
+    # @planets = []
 
     @@all << self
+  end
+
+  # def add_planet(planet_object)
+  #   @planets << planet_object
+  # end
+
+  def planets
+    # when i run this method, return an array of all planets belonging to this galaxy
+    self
+
+    Planet.all.select do |planet|
+      planet.galaxy == self
+    end
+  end
+
+  def self.find_by_name(g_name)
+    Galaxy.all.find do |galaxy|
+      galaxy.name == g_name
+    end
   end
 
   def self.all

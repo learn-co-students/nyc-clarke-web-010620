@@ -1,14 +1,15 @@
 class Planet
 
-  attr_accessor :name
+  attr_accessor :name, :galaxy
   attr_reader :size, :atmosphere
 
   @@all = []
 
-  def initialize(size, atmosphere, name)
+  def initialize(name, size, atmosphere, galaxy)
     @size = size
     @atmosphere = atmosphere
     @name = name
+    @galaxy = galaxy
 
     @@all << self
   end
