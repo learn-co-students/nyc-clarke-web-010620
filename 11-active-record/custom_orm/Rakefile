@@ -1,0 +1,13 @@
+require_relative './config/environment'
+require 'sinatra/activerecord/rake'
+
+desc "Opens console for testing"
+task :console do
+  # ActiveRecord::Base.logger = Logger.new(STDOUT)
+  Pry.start
+end
+
+desc "Runs application"
+task :start do
+  ruby "./run.rb"
+end
