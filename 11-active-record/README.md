@@ -23,3 +23,5 @@ Run Migration: `rake db:migrate`
 2. In your migration, use `create_table` to build your table and its attributes
 3. Run the migration
   - `rake db:migrate`
+  - check if migration successful by looking at schema
+4. Create class that inherits from ActiveRecord::Base. This is your model
