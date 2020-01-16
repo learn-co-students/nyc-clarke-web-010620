@@ -4,22 +4,28 @@ class Pirate
 
   DB = SQLite3::Database.new("./db/database.db")
 
-  def initialize(name, ship, booty, location_of_treasure, id=nil)
-    @name = name
-    @ship = ship
-    @booty = booty
-    @location_of_treasure = location_of_treasure
-    @id = id
+  def initialize(properties)
+    @name = properties[:name]
+    @ship = properties[:ship]
+    @booty = properties[:booty]
+    @location_of_treasure = properties[:location_of_treasure]
+    @id = properties[:id]
   end
 
   def self.all
-    pirates = DB.execute("
+    data = DB.execute("
       SELECT *
-      FROM pirates;
+      FROM #{self.to_s.downcase}s;
     ")
 
-    pirates.map do |pirate|
-      Pirate.new(pirate[1], pirate[2], pirate[3], pirate[4], pirate[0])
+    data.map do |pirate|
+      self.new(
+        booty: pirate[3], 
+        name: pirate[1], 
+        ship: pirate[2], 
+        location_of_treasure: pirate[4], 
+        id: pirate[0]
+      )
     end
   end
 
@@ -30,7 +36,13 @@ class Pirate
       WHERE pirates.id = #{id}
     ").flatten
 
-    Pirate.new(pirate[1], pirate[2], pirate[3], pirate[4], pirate[0])
+    Pirate.new(
+      booty: pirate[3], 
+      name: pirate[1], 
+      ship: pirate[2], 
+      location_of_treasure: pirate[4], 
+      id: pirate[0]
+    )
   end
 
   def save

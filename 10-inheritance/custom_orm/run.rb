@@ -46,7 +46,12 @@ def make_pirate
   puts "Yoho! Where ye pirate be stashin' his treasure?"
   location_of_treasure = gets.chomp.to_i
 
-  pirate = Pirate.new(name, ship, booty, location_of_treasure)
+  pirate = Pirate.new(
+        booty: booty, 
+        name: name, 
+        ship: ship, 
+        location_of_treasure: location_of_treasure, 
+      )
   pirate.save
 
   puts "Ye pirate is settin' sail!"

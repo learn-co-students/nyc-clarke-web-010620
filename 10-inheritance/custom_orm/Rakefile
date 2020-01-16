@@ -1,2 +1,18 @@
 require 'rake'
 require_relative './config/environment.rb'
+
+
+task :test do
+  Pry.start
+end
+
+task :run do
+  ruby './run.rb'
+end
+
+task :seed do
+  ["John Silver", "Alex Mercer"].each do |name|
+    pirate = Pirate.new(name: name)
+    pirate.save
+  end
+end
