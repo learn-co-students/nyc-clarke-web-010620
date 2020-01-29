@@ -47,13 +47,20 @@ class ApplicationController < Sinatra::Base
   
   # UPDATE Action
   patch '/doctors/:id' do
+    binding.pry
     doctor = Doctor.find(params[:id])
     
     doctor.update(params[:doctor])
-
+    
     redirect to "/doctors/#{doctor.id}"
   end
+  
+  # DELETE/DESTROY Action
+  delete '/doctors/:id' do
+    doctor = Doctor.find(params[:id])
 
-  # DELETE Action
-
+    doctor.destroy
+    
+    redirect to "/doctors"
+  end
 end

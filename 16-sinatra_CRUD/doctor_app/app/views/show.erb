@@ -9,3 +9,8 @@
 <hr>
 <a href="/doctors/<%= @doctor.id %>/edit">EDIT</a>
 <a href="/doctors">Back to Index</a>
+
+<form action="/doctors/<%= @doctor.id  %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="DELETE!!">
+</form>

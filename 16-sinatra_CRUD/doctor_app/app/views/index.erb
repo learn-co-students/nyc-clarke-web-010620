@@ -5,6 +5,10 @@
     <div class="index-tile">
       <h2><a href="/doctors/<%= doc.id %>"> <%= doc.name %></a></h2>
       <img class="index-img" src="<%= doc.img_url %>" alt="<%= doc.name %>">
+      <form action="/doctors/<%= doc.id  %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="DELETE!!">
+      </form>
     </div>
   <% end %>
 </div>
