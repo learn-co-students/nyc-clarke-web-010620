@@ -1,0 +1,10 @@
+<h1>Doctor Index Page</h1>
+
+<div class="index-container">
+  <% @doctors.each do |doc| %>
+    <div class="index-tile">
+      <h2><%= doc.name %></p>
+      <img class="index-img" src="<%= doc.img_url %>" alt="<%= doc.name %>">
+    </div>
+  <% end %>
+</div>
