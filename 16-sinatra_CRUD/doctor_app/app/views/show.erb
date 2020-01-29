@@ -5,3 +5,7 @@
 <p>Year of Experience: <%= @doctor.experience %></p>
 
 <img class="show-img" src="<%= @doctor.img_url %>" alt="<%= @doctor.name %>">
+
+<hr>
+<a href="/doctors/<%= @doctor.id %>/edit">EDIT</a>
+<a href="/doctors">Back to Index</a>

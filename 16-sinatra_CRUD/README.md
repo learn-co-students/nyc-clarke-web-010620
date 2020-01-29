@@ -25,10 +25,7 @@ Sinatra CRUD
   - Nested params
 - Part 2: Delete
   - Delete button
-  <!-- ----------------------------------- -->
-- *If there's time*
-  - View helpers!
-  - Search form!
+  
 
 ### REST & CRUD
 - [ ] Create

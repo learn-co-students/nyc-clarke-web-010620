@@ -1,0 +1,8 @@
+<form action="/doctors/<%=@doctor.id%>" method="POST">
+  <input type="hidden" name="_method" value="PATCH" >
+  <input type="text" name="doctor[name]" value="<%= @doctor.name  %>" placeholder="Name" >
+  <input type="text" name="doctor[specialization]" value="<%= @doctor.specialization %>" placeholder="Specialty">
+  <input type="number" name="doctor[experience]" value="<%= @doctor.experience %>" placeholder="Years Experience">
+  
+  <input type="submit" value="UPDATE Doctor">
+</form>
