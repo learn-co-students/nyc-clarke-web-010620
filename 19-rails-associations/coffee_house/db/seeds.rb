@@ -11,7 +11,7 @@ drink_types = ["AFFOGATO", "AMERICANO", "CAFFÈ LATTE", "CAFFÈ MOCHA", "CAPPUCC
 
 30.times do 
   hero = heros.sample
-  Drink.create(name: "#{hero["name"]} #{drink_types.sample}", img_url: hero["images"]["lg"])
+  Drink.create(name: "#{hero["name"]} #{drink_types.sample}", description: Faker::Coffee.notes, img_url: hero["images"]["lg"])
 end
 
 

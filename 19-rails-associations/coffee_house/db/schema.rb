@@ -13,10 +13,10 @@
 ActiveRecord::Schema.define(version: 2020_01_31_185355) do
 
   create_table "drinks", force: :cascade do |t|
-    t.string "size"
     t.boolean "hot", default: true
     t.string "name"
     t.string "img_url"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
