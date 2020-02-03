@@ -12,14 +12,14 @@ App Idea
 
 
 ## Outline
-- [ ] Create our model using `rails g model`
-- [ ] Work on CRUD, focus on routes and ActionView helpers
-  - [ ] Read
-    - [ ] Views -> Index, Show, New, Edit 
-    - [ ] Review `link_to` and path helpers
-  - [ ] Create
-    - [ ] HTML form vs `form_tag` vs `form_for`
-    - [ ] Strong Params
+- [X] Create our model using `rails g model`
+- [X] Work on CRUD, focus on routes and ActionView helpers
+  - [X] Read
+    - [X] Views -> Index, Show, New, Edit 
+    - [X] Review `link_to` and path helpers
+  - [X] Create
+    - [X] HTML form vs `form_tag` vs `form_for`
+    - [X] Strong Params
   - [ ] Update
     - [ ] reusable `form_for`
   - [ ] Delete
