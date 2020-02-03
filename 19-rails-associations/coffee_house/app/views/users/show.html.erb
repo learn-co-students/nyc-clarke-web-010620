@@ -1,0 +1,9 @@
+<div class="show-body">
+  <h1><%= @user.user_name %></h1>
+  <marquee> <img class="show-img" src="<%= @user.img_url %>" alt="<%= @user.user_name %>"></marquee>
+  <h2>My Drinks</h2>
+  <% @user.drinks.uniq.each do |drink| %>
+    <p><%= link_to drink.name, drink_path(drink) %></p>
+  <% end %>
+</div>
+

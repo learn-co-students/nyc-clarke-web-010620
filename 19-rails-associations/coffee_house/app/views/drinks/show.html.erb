@@ -7,6 +7,12 @@
     <img class="show-img" src="<%= @drink.img_url %>" alt="<%= @drink.name %>">
   </marquee>
 
+  <h2>Drinkers of Drink</h2>
+
+  <% @drink.users.uniq.each do |user| %>
+    <p><%= link_to user.user_name, user %></p>
+  <% end %>
+
   <%= link_to "Go to Index", drinks_path  %>  
   <hr>
   <%= link_to "Edit Drink", edit_drink_path  %> 
