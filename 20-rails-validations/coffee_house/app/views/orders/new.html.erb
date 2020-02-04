@@ -1,0 +1,21 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <p style="background:white;"><%= error %></p>
+  <% end %>
+<% end %>
+
+<%= form_for @order do |f| %>
+  <%= f.label :size %>
+  <%= f.text_field :size %>
+
+  <%= f.label :price %>
+  <%= f.number_field :price %>
+
+  <%= f.label :user_id %>
+  <%= f.collection_select :user_id, @users, :id, :user_name %>
+  
+  <%= f.label :drink_id %>
+  <%= f.collection_select :drink_id, @drinks, :id, :name %>
+
+  <%= f.submit %>
+<% end  %>
