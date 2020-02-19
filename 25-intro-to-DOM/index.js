@@ -1,29 +1,36 @@
-console.log('movies are the best')
+// function multiplier(x) {
+//   return function(y) {
+//     return x * y
+//   }
+// }
 
-// √create a new li for gremlins
-// √put some HTML inside the li - img, h3, etc.
-// √get the ul
-// √attach the li to the ul
+// let doubler = multiplier(2)
 
+// function myMap(array, callback) {
+//   const newArray = []
+//   for (let i = 0; i < array.length; i++) {
+//     const element = array[i];
+//     const newElement = callback(element)
+//     newArray.push(newElement)
+//   }
 
+//   return newArray
+// }
 
-function createLi(){
-  let li = document.createElement('li')
-  li.className = "movie"
+const ul = document.getElementsByTagName('ul')[0]
 
-  li.innerHTML = `
-    <h3>Gremlins</h3>
-    <img alt=""
-        src="https://images-na.ssl-images-amazon.com/images/I/51W8yqu8KNL._AC_.jpg" />
-    <h4>Year: </h4>
-    <p>1984</p>
-    <h4>Score: <span>0</span> </h4>
-    <button>Up Vote</button>
-    <button>Down Vote</button>
-  `
-  return li
-}
+const li = document.createElement('li')
+li.className = 'movie'
 
-let ul = document.getElementsByTagName('ul')[0]
+li.innerHTML = `
+  <h3>Parasite</h3>
+  <img alt="" src="https://mymodernmet.com/wp/wp-content/uploads/2020/02/parasite-film-tribute-1.jpg" />
+  <h4>Year: </h4>
+  <p>2019</p>
+  <h4>Score: <span>0</span> </h4>
+  <button>Up Vote</button>
+  <button>Down Vote</button>
+  <button>&times;</button>
+`
 
-ul.append(createLi())
+ul.append(li)

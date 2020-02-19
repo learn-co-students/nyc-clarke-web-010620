@@ -73,11 +73,16 @@
 
 - READ:
 
-- `node.getElementById`
+- `document.getElementById`
+  - returns the first child element with that id
 - `node.getElementsByTagName`
+  - returns an HTML Collection of all the elements with a specified tag, only searches descendents of the node
 - `node.getElementsByClassName`
+  - returns a collection of nodes with a specified class name
 - `node.querySelector`
+  - returns the first child that matches the CSS selector
 - `node.querySelectorAll`
+  - returns a collection of descendent elements that match the CSS selector
   - We can also combine selectors for more specificity:
     - We need a space between `#parent .child`
     - We can chain selectors `div.image.highlighted`
