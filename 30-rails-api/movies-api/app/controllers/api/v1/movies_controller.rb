@@ -18,6 +18,12 @@ class Api::V1::MoviesController < ApplicationController
     render json: {status: "ok"}
   end
 
+  def create
+    movie = Movie.create(movie_params)
+
+    render json: movie
+  end
+  
   private
 
   def movie_params

@@ -90,8 +90,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         addMovie(movie)
       })
 
-
-
       document.body.replaceChild(button, newForm)
     })
   })
