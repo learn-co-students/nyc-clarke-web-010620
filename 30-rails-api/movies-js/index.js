@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-  const base_url = "http://localhost:3000/movies"
+  const base_url = "http://localhost:3000/api/v1/movies"
 
   fetch(base_url)
   .then(resp => resp.json())
@@ -29,14 +29,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
         body: JSON.stringify(body)
       })
 
-
-
     } if (event.target.dataset.purpose === 'delete'){
-      event.target.innerText = 'hey there'
-      const deleteButton = event.target
-      const li = deleteButton.parentNode
+      const li = event.target.parentNode
 
-      li.remove()
+      fetch(`${base_url}/${li.dataset.id}`,{
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+          accept: "application/json"
+        }
+      })
+      .then(resp => resp.json())
+      .then(data => {
+        const li = event.target.parentNode
+
+        li.remove()
+      })
     }
   })
 
@@ -69,8 +77,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       const newMovie = { title, imageUrl, year, score }
       
-      addMovie(newMovie)
-      
+      fetch(`${base_url}`, {
+        method: "POST",
+        headers:  {
+          "content-type": "application/json",
+          "accept": "application/json"
+        },
+        body: JSON.stringify(newMovie)
+      })
+      .then(resp => resp.json())
+      .then(movie => {
+        addMovie(movie)
+      })
+
+
+
       document.body.replaceChild(button, newForm)
     })
   })
