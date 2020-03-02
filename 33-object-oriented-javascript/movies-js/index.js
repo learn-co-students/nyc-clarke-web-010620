@@ -1,12 +1,16 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-  const base_url = "http://localhost:3000/api/v1/movies"
+  // const base_url = "http://localhost:3000/api/v1/movies"
 
-  fetch(base_url)
-  .then(resp => resp.json())
-  .then(movies => {
-    movies.forEach(addMovie)
+  Adapter.getMovies()
+  .then(data => {
+    const movies = data.map(movieData => {
+      return new Movie(movieData)
+    })
+
+    movies.forEach(movie => {
+      movie.addMovie()
+    })
   })
-
 
   let imageContainer = document.getElementById('image-container')
 
@@ -94,25 +98,3 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
   })
 })
-
-let addMovie = movie => {
-  const ul = document.getElementsByTagName('ul')[0]
-  const li = document.createElement('li')
-  li.className = 'movie'
-  li.dataset.id = movie.id
-  
-  li.innerHTML = `
-    <h3>${movie.title}</h3>
-    <img alt="" src="${movie.imageUrl}" />
-    <h4>Year: </h4>
-    <p>${movie.year}</p>
-    <h4>Score: <span>${movie.score}</span> </h4>
-    <button class="up-vote">Up Vote</button>
-    <button >Down Vote</button>
-    <button data-purpose="delete" data-beef='tasty'>&times;</button>
-  `
-
-  ul.append(li)
-}
-
-
