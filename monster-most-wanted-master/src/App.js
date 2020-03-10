@@ -3,12 +3,16 @@ import './App.css';
 import MonsterContainer from './MonsterContainer';
 import Navbar from './Navbar';
 import { StyledApp } from './styledComponents';
+import CampaignContainer from './CampaignContainer';
 
 function App() {
   return (
     <StyledApp>
       <Navbar />
-      <MonsterContainer />
+      <div style={{display: 'flex', flexDirection: 'row'}}>
+        <MonsterContainer />
+        <CampaignContainer monsters={[]}/>
+      </div>
     </StyledApp>
   );
 }
