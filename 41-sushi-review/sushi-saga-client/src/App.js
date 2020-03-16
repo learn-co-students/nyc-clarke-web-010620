@@ -10,7 +10,8 @@ class App extends Component {
   state = {
     sushis: [],
     ate: [], // an array of id's of eaten sushis
-    money: 50
+    money: 50,
+    moolahInput: ''
   }
 
   componentDidMount() {
@@ -39,9 +40,25 @@ class App extends Component {
     }
   }
 
+  handleMoolahChange = (e) => {
+    this.setState({ moolahInput: e.target.value })
+  }
+
+  handleMoolahSubmit = (e) => {
+    e.preventDefault();
+    this.setState({ 
+      money: this.state.money + parseInt(this.state.moolahInput),
+      moolahInput: ''
+    })
+  }
+
   render() {
     return (
       <div className="app">
+        <form onSubmit={this.handleMoolahSubmit}>
+          <input type="text" value={this.state.moolahInput} onChange={this.handleMoolahChange}/>
+          <button type="submit">Add Moolah</button>
+        </form>
         <SushiContainer sushis={this.state.sushis} consume={this.handleConsumption} ate={this.state.ate}/>
         <Table ate={this.state.ate} money={this.state.money}/>
       </div>

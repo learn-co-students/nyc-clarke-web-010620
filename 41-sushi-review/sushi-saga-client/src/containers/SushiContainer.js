@@ -9,8 +9,12 @@ class SushiContainer extends React.Component {
   }
 
   nextPage = () => {
+    let newIndex = this.state.startIdx + 4;
+    if (newIndex >= this.props.sushis.length){ newIndex = 0 }
+
     this.setState({
-      startIdx: this.state.startIdx + 4
+      startIdx: newIndex
+      //  startIdx: this.state.startIdx + 4 >= this.props.sushis.length ? 0 : this.state.startIdx + 4
     })
   }
   
