@@ -12,12 +12,9 @@
 -----
 
 ## Sushi Hook Transition
-We do:
 - SushiContainerHook
   - useState for startIndex
   - useEffect for alerting the user when they reach the end and going back to the beginning
-
-Groups do!:
 - AppHook
   - useState for all state
   - useEffect for fetching sushis
