@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './App.css';
+import { likeActionCreator, dislikeActionCreator } from './actionCreators'
 
 
  function random_rgba() {
@@ -9,64 +11,94 @@ import './App.css';
 
 
 
-class App extends React.Component {
+const App = props => {
 
-  state = {
-    likes: 0,
-    text: '',
-    darkMode: false,
-    thangs: []
-  }
+  return (
+    <div className={"App" + (props.darkMode ? " dark" : "")}>
+      <button onClick={props.toggleDark}>Dark mode</button>
+      <h3>{props.text}</h3>
+      <input 
+        name="text" 
+        value={props.text} 
+        onChange={event => props.changeText(event.target.value)}/>
+      <button onClick={props.addText}>Add!</button>
 
-  like = () => {
-    this.setState({ likes: this.state.likes + 1 })
-  }
+      <h4>{props.likes} likes</h4>
+      <button onClick={props.dislike}>
+        Dislike <span role="img" aria-label="thumbs down">👎</span>
+      </button>
+      <button onClick={props.like}>
+        Like<span role="img" aria-label="thumbs up">👍</span>
+      </button>
+      {
+        props.thangs.map((thang, index) => <h1 key={index} >{thang}</h1>)
+      }
+    </div>
+  );
+}
 
-  dislike = () => {
-    this.setState({ likes: this.state.likes - 1 })
-  }
-
-  toggle = () => {
-    this.setState({ darkMode: !this.state.darkMode })
-  }
-
-  handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value })
-
-  }
-
-  addText = () => {
-    this.setState({ 
-      text: '',
-      thangs: [this.state.text, ...this.state.thangs]
-    })
-  }
-
-  render(){
-    return (
-      <div className={"App" + (this.state.darkMode ? " dark" : "")}>
-        <button onClick={this.toggle}>Dark mode</button>
-        <h3>{this.state.text}</h3>
-        <input 
-          name="text" 
-          value={this.state.text} 
-          onChange={(event) => this.handleChange(event)}/>
-        <button onClick={this.addText}>Add!</button>
-
-        <h4>{this.state.likes} likes</h4>
-        <button onClick={this.dislike}>
-          Dislike <span role="img" aria-label="thumbs down">👎</span>
-        </button>
-        <button onClick={this.like}>
-          Like<span role="img" aria-label="thumbs up">👍</span>
-        </button>
-        {
-          this.state.thangs.map((thang, index) => <h1 key={index} >{thang}</h1>)
-        }
-      </div>
-    );
+const mapStateToProps = (state) => {
+  return {
+    likes: state.likes,
+    thangs: state.thangs,
+    text: state.text,
+    darkMode: state.darkMode
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    like: () => dispatch(likeActionCreator()),
+    dislike: () => dispatch(dislikeActionCreator()),
+    toggleDark: () => dispatch({type: 'TOGGLE_DARK'}),
+    addText: () => dispatch({ type: 'ADD_TEXT'}),
+    changeText : (textValue) => dispatch({ type: 'CHANGE_TEXT', payload: textValue})
+  }
+}
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+
+/************************************* FROM BEFORE REDUX !!!! *************************************/
+// state = {
+//   likes: 0,
+//   text: '',
+//   darkMode: false,
+//   thangs: []
+// }
+
+// dispatch = (type, payload) => {
+//   console.log('dispatching', type)
+//   const newState = this.reducer(type, payload)
+//   // set the state 
+//   this.setState(newState)
+// }
+
+// reducer = (type, payload) => {
+//   // calculate the new state
+//   let newState = {...this.state}
+//   switch(type){
+//     case 'LIKE':
+//        newState = { ...newState, likes: this.state.likes + 1 }
+//       break;
+//     case 'DISLIKE':
+//       newState = { ...newState, likes: this.state.likes - 1 }
+//       break;
+//     case 'TOGGLE_DARK':
+//       newState = { ...newState, darkMode: !this.state.darkMode }
+//       break;
+//     case 'CHANGE_TEXT':
+//       newState = { ...newState, text: payload }
+//       break;
+//     case 'ADD_TEXT':
+//       newState = { 
+//         ...newState,
+//         text: '',
+//         thangs: [this.state.text, ...this.state.thangs]
+//       }
+//       break;
+//     default:
+//       break;
+//   }
+//   return newState;
+// }
